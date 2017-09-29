@@ -1,15 +1,15 @@
 ##
-## drand48
+## Drand48
 ##
 ## Nim implementation of the standard unix drand48 pseudo random number generator.
-##
+## 
 ## All the routines work by generating a sequence of 48-bit integer values, Xi , 
 ## according to the linear congruential formula:
 ## 
 ## Xn+1 = (aXn + c) mod m   n>= 0
 ## 
-## The parameter m = 248; hence 48-bit integer arithmetic is performed. Unless lcong48() is 
-## invoked, the multiplier value a and the addend value c are given by:
+## The parameter m = 248; hence 48-bit integer arithmetic is performed. 
+## The multiplier value a and the addend value c are given by:
 ## 
 ## a = 0x5DEECE66D = 0c273673163155
 ## c = 0xB = oc13
@@ -22,17 +22,16 @@
 ## The drand48() function stores the last 48-bit Xi generated in an 
 ## internal buffer; that is why they must be initialised prior to being invoked. 
 ## 
-## The initialiser function srand48() sets the high-order 32 bits of Xi to 
+## The initializer function srand48() sets the high-order 32 bits of Xi to 
 ## the low-order 32 bits contained in its argument. The low-order 16 bits 
 ## of Xi are set to the arbitrary value 0x330E .
 ## 
-## The initialiser function seed48() sets the value of Xi to the 48-bit value 
-## specified in the argument array. The low-order 16 bits of Xi are set to the 
-## low-order 16 bits of seed16v[0]. The mid-order 16 bits of Xi are set to the 
-## low-order 16 bits of seed16v[1]. The high-order 16 bits of Xi are set to the
-## low-order 16 bits of seed16v[2]. 
-## There is a function savern48() that returns the current random number seed.
-##
+## The initializer function seed48() sets the value of Xi to the 48-bit value 
+## specified in the argument array. The seed can be set with the 48-bit
+## seed split into four 12-bit chunks, or as a 48-bit int.
+## 
+## There are functions savern12() and savern48() that returns the current random number seed.
+## 
 
 # The multiplier a = 0x5 DE EC E6 6D = 0c2736 7316 3155
 const

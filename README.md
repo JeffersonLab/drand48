@@ -1,4 +1,4 @@
-# drand48
+# Drand48 [![Build Status](https://travis-ci.org/JeffersonLab/drand48.svg?branch=master)](https://travis-ci.org/JeffersonLab/drand48)
 
 Nim implementation of the standard unix drand48 pseudo random number generator.
 
@@ -26,13 +26,8 @@ the low-order 32 bits contained in its argument. The low-order 16 bits
 of Xi are set to the arbitrary value 0x330E .
 
 The initializer function seed48() sets the value of Xi to the 48-bit value 
-specified in the argument array. The seed can be seed with the 48-bit
-seed split into four 12-bit chunks, or a 48-bit int.
+specified in the argument array. The seed can be set with the 48-bit
+seed split into four 12-bit chunks, or as a 48-bit int.
 
-The low-order 16 bits of Xi are set to the 
-low-order 16 bits of seed16v[0]. The mid-order 16 bits of Xi are set to the 
-low-order 16 bits of seed16v[1]. The high-order 16 bits of Xi are set to the
-low-order 16 bits of seed16v[2].
-
-There is are functions savern12() and savern48() that returns the current random number seed.
+There are functions savern12() and savern48() that returns the current random number seed.
 
