@@ -69,7 +69,7 @@ proc drand48*(): float =
                                    twom12*(float(l4)))))
 
 
-proc split12(lseed: int): array[4,int] =
+proc split12(lseed: int64): array[4,int] =
   ## Split a 48bit int into four 12bit chunks
   var iseed = lseed
   result[3] = iseed and 4095
@@ -81,7 +81,7 @@ proc split12(lseed: int): array[4,int] =
   result[0] = iseed and 4095
 
   
-proc build48(iseed: array[4,int]): int =
+proc build48(iseed: array[4,int]): int64 =
   ## Build a 48bit int from four 12bit chunks
   result = iseed[0] and 4095
   result = result shl 12
@@ -93,7 +93,7 @@ proc build48(iseed: array[4,int]): int =
   #echo "build48= ", result
   
 
-proc srand48*(lseed: int) =
+proc srand48*(lseed: int64) =
   ## Set the seed. Will only use the lowest 32bits.
   ##
   ## Will take the lowest 32 bits of `lseed` and use them for the upper
@@ -123,7 +123,7 @@ proc seed12*(iseed: array[4,int]) =
   l4 = iseed[3]
 
 
-proc seed48*(iseed: int) = 
+proc seed48*(iseed: int64) = 
   ## Set the 48bit seed. Can be even or odd
   let lseed = split12(iseed)
   l1 = lseed[0]
@@ -133,11 +133,11 @@ proc seed48*(iseed: int) =
 
 
 proc savern12*(): array[4,int] =
-  ## Return the seed in 12bit chunks
+  ## Return the seed in four 12bit chunks
   result = [l1, l2, l3, l4]
 
 
-proc savern48*(): int =
+proc savern48*(): int64 =
   ## Return the seed
   return build48([l1,l2,l3,l4])
 
@@ -146,14 +146,16 @@ proc savern48*(): int =
 #------------------------------------------------------------------------
 when isMainModule:
   proc getTimeOrigin(Lt: int, traj: int): int =
-    ## Return the randomly shift time-origin
+    ## Return a randomly shift time-origin
     srand48(traj)
     for i in 1..20:
       discard drand48()
     result = int(float(Lt)*drand48())
 
   ## Test the rng
-  echo "t_origin= ", getTimeOrigin(256, 1000)
+  let t_origin = getTimeOrigin(256, 1000)
+  echo "t_origin= ", t_origin
+  assert(t_origin == 176)
 
   var seed = 11
   echo "initial seed= ", repr(seed)
@@ -161,4 +163,6 @@ when isMainModule:
   for n in 1..10:
     echo "ran[", n, "]= ", drand48()
 
-  echo "final seed= ", repr(savern12())
+  let final_seed = savern12()
+  echo "final seed= ", repr(final_seed)
+  assert(final_seed == [2367,2989,1204,192])

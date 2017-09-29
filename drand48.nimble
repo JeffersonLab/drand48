@@ -9,3 +9,10 @@ license       = "BSD clause 3"
 
 requires "nim >= 0.17.0"
 
+# Builds
+task test, "Run the test suite":
+  exec "nim c -r drand48"
+
+task docgen, "Generate the documentation":
+  exec "nim doc2 --out:docs/drand48.html drand48.nim"
+
