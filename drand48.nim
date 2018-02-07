@@ -71,13 +71,13 @@ proc drand48*(): float =
 proc split12(lseed: int64): array[4,int] =
   ## Split a 48bit int into four 12bit chunks
   var iseed = lseed
-  result[3] = iseed and 4095
+  result[3] = int(iseed and 4095)
   iseed = iseed shr 12
-  result[2] = iseed and 4095
+  result[2] = int(iseed and 4095)
   iseed = iseed shr 12
-  result[1] = iseed and 4095
+  result[1] = int(iseed and 4095)
   iseed = iseed shr 12
-  result[0] = iseed and 4095
+  result[0] = int(iseed and 4095)
 
   
 proc build48(iseed: array[4,int]): int64 =
