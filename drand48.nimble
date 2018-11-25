@@ -1,13 +1,13 @@
 # Package
 
-version       = "1.0.1"
+version       = "1.1.0"
 author        = "Robert Edwards"
 description   = "Nim implementation of standard unix drand48 random number generator"
 license       = "BSD clause 3"
 
 # Dependencies
 
-requires "nim >= 0.17.0"
+requires "nim >= 0.19.0"
 
 # Builds
 task test, "Run the test suite":
