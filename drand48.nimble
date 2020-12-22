@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.1.0"
+version       = "1.1.1"
 author        = "Robert Edwards"
 description   = "Nim implementation of standard unix drand48 random number generator"
 license       = "BSD clause 3"
