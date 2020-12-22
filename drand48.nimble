@@ -7,7 +7,7 @@ license       = "BSD clause 3"
 
 # Dependencies
 
-requires "nim >= 0.17.0"
+requires "nim >= 1.0.0"
 
 # Builds
 task test, "Run the test suite":
