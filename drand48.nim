@@ -33,13 +33,13 @@
 ## There are functions savern12() and savern48() that returns the current random number seed.
 ## 
 
-# The multiplier a = 0x5 DE EC E6 6D = 0c2736 7316 3155
+# The multiplier a = 0x5 DE EC E6 6D = 0o2736 7316 3155
 const
   m1 = 0
-  m2 = 0c2736
-  m3 = 0c7316
-  m4 = 0c3155
-  incr = 0c13
+  m2 = 0o2736
+  m3 = 0o7316
+  m4 = 0o3155
+  incr = 0o13
   twom12 = 1.0/4096.0
 
 # The seed
